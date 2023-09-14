@@ -18,5 +18,8 @@ namespace DataAccessLayer.IDALs
         void Update(Persona persona);
 
         void Delete(string documento);
+
+        void AddVehiculo(Vehiculo vehiculo);
+        List<Vehiculo> GetVehiculos(string documento);
     }
 }

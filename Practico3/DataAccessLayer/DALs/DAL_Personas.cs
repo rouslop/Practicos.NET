@@ -36,5 +36,20 @@ namespace DataAccessLayer.DALs
         {
             personas.Remove(documento);
         }
+
+        public void AddVehiculo(Vehiculo vehiculo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Vehiculo> GetVehiculos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Vehiculo> GetVehiculos(string documento)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

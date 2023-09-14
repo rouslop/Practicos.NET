@@ -20,13 +20,15 @@ Console.WriteLine("1 - Agregar Persona");
 Console.WriteLine("2 - Listar Personas");
 Console.WriteLine("3 - Eliminar Persona");
 Console.WriteLine("4 - Mostrar Persona");
-Console.WriteLine("4 - Modificar Persona");
-Console.WriteLine("6 - Salir");
+Console.WriteLine("5 - Modificar Persona");
+Console.WriteLine("6 - Agregar Vehiculo");
+Console.WriteLine("7 - Mostrar Vehiculos");
+Console.WriteLine("8 - Salir");
 
 Console.Write("Ingrese Comando> ");
 string command = Console.ReadLine();
 
-while(command != "6")
+while(command != "8")
 {
     try
     {
@@ -46,6 +48,12 @@ while(command != "6")
                 break;
             case "5":
                 commands.UpdatePersona();
+                break;
+            case "6":
+                commands.AddVehiculo();
+                break;
+            case "7":
+                commands.MostrarVehiculos();
                 break;
             default:
                 Console.WriteLine("Comando no reconocido");

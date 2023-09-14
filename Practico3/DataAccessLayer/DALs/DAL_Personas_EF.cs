@@ -109,6 +109,38 @@ namespace DataAccessLayer.DALs
                 throw new Exception("No existe dicha persona");
             }
             
+        }  
+
+        public void AddVehiculo(Vehiculo v)
+        {
+            Vehiculos vh = new Vehiculos();
+            vh.Marca = v.Marca;
+            vh.Modelo = v.Modelo;
+            vh.Matricula = v.Matricula;
+            vh.Propietario = _dbContext.Personas.FirstOrDefault(p => p.Documento == v.Propietario.Documento);
+
+            _dbContext.Vehiculos.Add(vh);
+            _dbContext.SaveChanges();
+
+        }
+
+        public List<Vehiculo> GetVehiculos(string documento)
+        {
+            Personas persona = _dbContext.Personas.FirstOrDefault(p => p.Documento == documento);
+            if(persona != null)
+            {
+                List<Vehiculos> vh = _dbContext.Vehiculos.Where(v => v.Propietario == persona).ToList();
+                List<Vehiculo> res = new List<Vehiculo>();
+                foreach (Vehiculos v in vh)
+                {
+                    res.Add(new Vehiculo { Id = v.Id, Marca = v.Marca, Matricula = v.Matricula, Modelo = v.Modelo });
+                }
+                return res;
+            }
+            else 
+            {
+                throw new Exception("No existe dicha persona");
+            }
         }
     }
 }

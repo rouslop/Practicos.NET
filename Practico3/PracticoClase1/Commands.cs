@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.BLs;
 using BusinessLayer.IBLs;
+using DataAccessLayer.EFModels;
 using Shared;
 using System;
 using System.Collections.Generic;
@@ -130,6 +131,50 @@ namespace PracticoClase1
             _personasBL.Update(persona);
 
             Console.WriteLine("Modificada con éxito");
+        }
+
+        public void AddVehiculo()
+        {
+            if(_personasBL.Get() != null)
+            {
+                Console.WriteLine("Ingrese el documento de la persona: ");
+                string documento = Console.ReadLine();
+                Persona p = _personasBL.Get(documento);
+                if (p != null)
+                {
+                    string agregar = "s";
+                    do
+                    {
+                        Vehiculo v = new Vehiculo();
+                        Console.WriteLine("Ingrese la marca del vehiculo: ");
+                        v.Marca = Console.ReadLine();
+                        Console.WriteLine("Ingrese el modelo del vehiculo: ");
+                        v.Modelo = Console.ReadLine();
+                        Console.WriteLine("Ingrese la matricula del vehiculo: ");
+                        v.Matricula = Console.ReadLine();
+                        v.Propietario = p;
+                        _personasBL.AddVehiculo(v);
+
+                        Console.WriteLine("Desea agregar otro vehiculo? (S/N)");
+                        agregar = Console.ReadLine().ToLower();
+                    }
+                    while (agregar != "n");
+                }
+                else
+                {
+                    throw new Exception("No existe dicha persona");
+                }
+                
+            }
+        }
+
+        public void MostrarVehiculos()
+        {
+            Console.WriteLine("Ingrese el documento de la persona: ");
+            string documento = Console.ReadLine();
+            Console.WriteLine("--- Vehiculos ---");
+            _personasBL.GetVehiculos(documento).ForEach(v => v.Print());
+
         }
     }
 }

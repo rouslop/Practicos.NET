@@ -26,6 +26,7 @@ namespace Shared
             Console.WriteLine("Marca: " + Marca);
             Console.WriteLine("Modelo: " + Modelo);
             Console.WriteLine("Matricula: " + Matricula);
+            Console.WriteLine("----------------------");
         }
     }
 }

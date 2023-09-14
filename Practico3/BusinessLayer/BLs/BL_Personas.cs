@@ -42,5 +42,16 @@ namespace BusinessLayer.BLs
         {
             _personas.Delete(documento);
         }
+
+        public void AddVehiculo(Vehiculo v)
+        {
+            _personas.AddVehiculo(v);
+        }
+
+        public List<Vehiculo> GetVehiculos(string documento)
+        {
+            return _personas.GetVehiculos(documento);
+        }
+
     }
 }
